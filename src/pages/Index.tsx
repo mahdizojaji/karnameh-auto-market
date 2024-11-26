@@ -20,7 +20,8 @@ const Index = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return response.json() as Promise<CarPostsResponse>;
+      const data = await response.json();
+      return data as CarPostsResponse;
     },
   });
 
@@ -45,7 +46,7 @@ const Index = () => {
             />
           ))}
         </div>
-      ) : data?.items ? (
+      ) : data && data.items && data.items.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
             {data.items.map((car) => (
