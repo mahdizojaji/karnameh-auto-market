@@ -45,10 +45,10 @@ const Index = () => {
             />
           ))}
         </div>
-      ) : (
+      ) : data?.items ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-            {data?.items.map((car) => (
+            {data.items.map((car) => (
               <CarCard key={car.id} car={car} />
             ))}
           </div>
@@ -64,14 +64,16 @@ const Index = () => {
             <Button
               variant="outline"
               onClick={() => setPage((p) => p + 1)}
-              disabled={
-                !data || data.items.length < ITEMS_PER_PAGE
-              }
+              disabled={!data || data.items.length < ITEMS_PER_PAGE}
             >
               بعدی
             </Button>
           </div>
         </>
+      ) : (
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-gray-500">هیچ آگهی‌ای یافت نشد</p>
+        </div>
       )}
     </div>
   );
