@@ -46,11 +46,11 @@ const Index = () => {
             />
           ))}
         </div>
-      ) : data && data.items && data.items.length > 0 ? (
+      ) : data && data.car_posts && data.car_posts.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-            {data.items.map((car) => (
-              <CarCard key={car.id} car={car} />
+            {data.car_posts.map((car) => (
+              <CarCard key={car.image} car={car} />
             ))}
           </div>
           
@@ -65,7 +65,7 @@ const Index = () => {
             <Button
               variant="outline"
               onClick={() => setPage((p) => p + 1)}
-              disabled={!data || data.items.length < ITEMS_PER_PAGE}
+              disabled={!data || data.car_posts.length < ITEMS_PER_PAGE}
             >
               بعدی
             </Button>
