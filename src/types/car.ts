@@ -1,5 +1,5 @@
 export interface CarPost {
-  id?: string;
+  id: string;
   title: string;
   city_name_fa: string;
   usage: number;

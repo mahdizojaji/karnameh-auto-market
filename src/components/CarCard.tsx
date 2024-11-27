@@ -3,14 +3,20 @@ import { Card } from "@/components/ui/card";
 import { Phone } from "lucide-react";
 import { CarPost } from "@/types/car";
 import { formatNumber } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 interface CarCardProps {
   car: CarPost;
 }
 
 export const CarCard = ({ car }: CarCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <Card className="overflow-hidden">
+    <Card 
+      className="overflow-hidden cursor-pointer" 
+      onClick={() => navigate(`/car/${car.id}`)}
+    >
       <div className="aspect-[4/3] relative overflow-hidden">
         <img
           src={car.image}
@@ -26,7 +32,14 @@ export const CarCard = ({ car }: CarCardProps) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="font-semibold">{formatNumber(car.price)} تومان</span>
-          <Button size="sm" className="gap-2">
+          <Button 
+            size="sm" 
+            className="gap-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              // Handle phone button click
+            }}
+          >
             <Phone className="h-4 w-4" />
             تماس
           </Button>
