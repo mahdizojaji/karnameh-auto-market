@@ -15,7 +15,7 @@ const Index = () => {
       const response = await fetch(
         `https://api-gw.karnameh.com/post-storage/car-posts/car-post-list/?size=${ITEMS_PER_PAGE}&start=${
           page * ITEMS_PER_PAGE
-        }&sort=newest&relevant=false`
+        }&sort=newest&relevant=false&is_guaranteed=false&has_active_campaign=false&next_set=1784979159724&next_set=1&user_id=8ef2873e-db76-4e03-a6ce-4100b6d73e11`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
