@@ -74,7 +74,7 @@ const Index = () => {
             <Button
               variant="outline"
               onClick={() => setPage((p) => p + 1)}
-              disabled={!data || data.car_posts.length < ITEMS_PER_PAGE}
+              disabled={!data || data.car_posts.length < itemsPerPage}
             >
               بعدی
             </Button>
