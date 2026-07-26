@@ -4,6 +4,7 @@ import { CarPost } from "@/types/car";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight } from "lucide-react";
 import { formatNumber } from "@/lib/utils";
+import { fetchCarPosts } from "@/lib/carApi";
 import { CarCard } from "@/components/CarCard";
 
 const CarDetails = () => {
@@ -13,13 +14,7 @@ const CarDetails = () => {
   const { data: car, isLoading } = useQuery({
     queryKey: ["car", id],
     queryFn: async () => {
-      const response = await fetch(
-        `https://api-gw.karnameh.com/post-storage/car-posts/car-post-list/?size=1&start=0&sort=newest&relevant=false`
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
+      const data = await fetchCarPosts({ size: 1, start: 0, sort: "newest", relevant: "false" });
       return data.car_posts[0] as CarPost;
     },
   });
@@ -28,13 +23,7 @@ const CarDetails = () => {
     queryKey: ["similar-cars", car?.title],
     enabled: !!car,
     queryFn: async () => {
-      const response = await fetch(
-        `https://api-gw.karnameh.com/post-storage/car-posts/car-post-list/?size=3&start=0&sort=newest&relevant=false`
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
+      const data = await fetchCarPosts({ size: 3, start: 0, sort: "newest", relevant: "false" });
       return data.car_posts as CarPost[];
     },
   });
